@@ -123,7 +123,7 @@ site:
     # 加载页配置
     loadingOverlay:
         # 是否启用加载页
-        enable: false
+        enable: true
         # 加载标题配置
         title:
             # 是否启用加载标题
