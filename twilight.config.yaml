@@ -7,7 +7,7 @@ site:
     # 站点副标题
     subtitle: ""
     # 语言配置
-    lang: "cn"
+    lang: "zh"
     # 翻译配置
     translate:
         # 启用翻译功能
@@ -77,10 +77,10 @@ site:
                 # 在主页显示文本
                 enable: true
                 # 主标题
-                title: "Twilight"
+                title: "Trainlog"
                 # 副标题，支持单个字符串或字符串数组
                 subtitle:
-                    - "Illuminate Our Paths"
+                    - "Record My Journey"
                 # 副标题打字机效果
                 typewriter:
                     # 启用副标题打字机效果
@@ -123,7 +123,7 @@ site:
     # 加载页配置
     loadingOverlay:
         # 是否启用加载页
-        enable: true
+        enable: false
         # 加载标题配置
         title:
             # 是否启用加载标题
