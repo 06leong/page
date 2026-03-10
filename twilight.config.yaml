@@ -261,6 +261,14 @@ profile:
     # 简介配置
     bio: "Hiii"
     # 链接配置
+    links:
+        - # 链接示例
+            # 名字
+            name: "GitHub"
+            # 图标
+            icon: "fa6-brands:github"
+            # 链接
+            url: "www.bellotreno.org"
 
 # 公告配置
 announcement:
