@@ -53,13 +53,20 @@ site:
         src:
             # 桌面壁纸图片 (相对于 /public 目录; 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播)
             desktop:
-                - "/assets/images/desktopWallpaper_1.jpg"
-                - "/assets/images/desktopWallpaper_2.jpg"
-                - "/assets/images/desktopWallpaper_3.jpg"
+                - "/assets/images/1.webp"
+                - "/assets/images/2.webp"
+                - "/assets/images/3.webp"
+                - "/assets/images/4.webp"
+                - "/assets/images/5.webp"
+                - "/assets/images/6.webp"
             # 移动壁纸图片 (相对于 /public 目录; 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播)
             mobile:
-                - "/assets/images/mobileWallpaper_1.jpg"
-                - "/assets/images/mobileWallpaper_2.jpg"
+                - "/assets/images/7.webp"
+                - "/assets/images/8.webp"
+                - "/assets/images/9.webp"
+                - "/assets/images/10.webp"
+                - "/assets/images/11.webp"
+                - "/assets/images/12.webp"
         # 壁纸位置 ('top' | 'center' | 'bottom')
         position: "center"
         # 轮播配置 (fullscreen 和 banner 模式共享)
@@ -179,18 +186,18 @@ navbar:
             children:
                 - # 二级导航链接 - 项目 (预设)
                     "Projects"
-                - # 二级导航链接 - 技能 (预设)
-                    "Skills"
+#                - # 二级导航链接 - 技能 (预设)
+#                    "Skills"
                 - # 二级导航链接 - 历程 (预设)
                     "Timeline"
                 - # 二级导航链接 - 日记 (预设)
                     "Diary"
                 - # 二级导航链接 - 相册 (预设)
                     "Albums"
-                - # 二级导航链接 - 动画 (预设)
-                    "Anime"
-        - # 一级导航链接 - 好友 (预设)
-            "Friends"
+#                - # 二级导航链接 - 动画 (预设)
+#                   "Anime"
+#        - # 一级导航链接 - 好友 (预设)
+#            "Friends"
         - # 一级导航链接 - 关于 (预设)
             "About"
 
@@ -239,29 +246,21 @@ sidebar:
                 customProps:
                     # 目录深度 (1-6，1 表示只显示 h1 标题，2 表示显示 h1 和 h2 标题，依此类推)
                     depth: 3
-            - # 组件 - 文章统计 (预设)
+#            - # 组件 - 文章统计 (预设)
                 # 类型
-                type: "statistics"
+#                type: "statistics"
                 # 位置策略 ("top" 顶部固定 | "sticky" 粘性)
-                position: "sticky"
+#                position: "sticky"
 
 # 资料配置
 profile:
     # 头像配置 (相对于 /public 目录)
-    avatar: "/assets/images/avatar.jpg"
+    avatar: "/assets/images/ico.webp"
     # 信息配置
-    name: "Twilight"
+    name: "LHODP"
     # 简介配置
-    bio: "Hi"
+    bio: "Hiii"
     # 链接配置
-    links:
-        - # 链接示例
-            # 名字
-            name: "GitHub"
-            # 图标
-            icon: "fa6-brands:github"
-            # 链接
-            url: "https://github.com/Spr-Aachen/Twilight"
 
 # 公告配置
 announcement:
@@ -270,7 +269,7 @@ announcement:
     # 公告内容
     content: "Welcome to my blog!"
     # 允许用户关闭公告
-    closable: true
+    closable: false
     # 链接配置
     link:
         # 启用链接
@@ -360,7 +359,7 @@ particle:
 # 音乐播放器配置
 musicPlayer:
     # 启用音乐播放器功能
-    enable: true
+    enable: false
     # 默认模式 ("meting" API | "local" 本地)
     mode: "meting"
     # meting 模式专属配置
