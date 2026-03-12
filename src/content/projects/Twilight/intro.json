@@ -15,6 +15,6 @@
     "Railway"
   ],
   "image": "https://img.bellotreno.org/file/3Hkd8MkB.webp",
-  "description": "A personal project for the Italian railway real timetable, using data from the Viaggiatreno API.. 一个关于意大利铁路实时时刻表的个人项目,使用viaggiatreno api数据。",
+  "description": "A personal project for Italian railway real timetable, using data from viaggiatreno API. ",
   "category": "website"
 }
