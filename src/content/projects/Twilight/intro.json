@@ -1,21 +1,20 @@
 {
-    "title": "Twilight Blog Template",
-    "description": "A CMS integrated blog theme built with Astro framework.",
-    "image": "./Twilight_Cover.jpg",
-    "category": "website",
-    "techStack": [
-        "Astro",
-        "Svelte",
-        "Tailwind CSS"
-    ],
-    "status": "in-progress",
-    "liveDemo": "https://twilight.spr-aachen.com",
-    "sourceCode": "https://github.com/Spr-Aachen/Twilight",
-    "startDate": "2025-10-01",
-    "endDate": "",
-    "featured": true,
-    "tags": [
-        "Personal Project",
-        "Open Source Project"
-    ]
+  "sourceCode": "",
+  "endDate": "",
+  "featured": true,
+  "liveDemo": "https://real.bellotreno.org",
+  "startDate": "2025-10-01",
+  "techStack": [
+    "Astro",
+    "Tailwind CSS",
+    ""
+  ],
+  "status": "in-progress",
+  "title": "BelloTreno",
+  "tags": [
+    "Railway"
+  ],
+  "image": "https://img.bellotreno.org/file/3Hkd8MkB.webp",
+  "description": "A personal project for the Italian railway real timetable, using data from the Viaggiatreno API.. 一个关于意大利铁路实时时刻表的个人项目,使用viaggiatreno api数据。",
+  "category": "website"
 }
