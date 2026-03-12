@@ -6,14 +6,12 @@
     }
   ],
   "layout": "masonry",
-  "date": "2022-01-01T00:00:00.000+08:00",
+  "date": "2022-01-01T01:00:00.000+08:00",
   "visible": true,
   "location": "🇪🇺",
   "cover": "https://img.bellotreno.org/file/so3ExTIX.webp",
   "title": "Personal Album",
-  "tags": [
-    "example"
-  ],
-  "description": "https://www.lambrate.de",
+  "tags": [],
+  "description": "Visit the website\nhttps://www.lambrate.de",
   "columns": 3
 }
