@@ -1,29 +1,19 @@
 {
-    "title": "Album Example",
-    "description": "This is an example album.",
-    "cover": "https://picsum.photos/800/600?random=1",
-    "date": "2025-01-01T00:00:00.000Z",
-    "location": "Unknown",
-    "tags": ["example"],
-    "layout": "masonry",
-    "columns": 3,
-    "photos": [
-        {
-            "src": "./智子_ASK.jpg",
-            "alt": "智子",
-            "title": "智子 by ASK",
-            "description": "This is a beautiful image from local file",
-            "tags": ["human"]
-        },
-        {
-            "src": "https://picsum.photos/800/600?random=2",
-            "alt": "random image",
-            "title": "Random Image",
-            "description": "This is a beautiful image from external link",
-            "tags": [
-                "scenary"
-            ]
-        }
-    ],
-    "visible": true
+  "photos": [
+    {
+      "tags": [],
+      "src": "https://img.bellotreno.org/file/KRhNAcmC.webp"
+    }
+  ],
+  "layout": "masonry",
+  "date": "2022-01-01T00:00:00.000+08:00",
+  "visible": true,
+  "location": "🇪🇺",
+  "cover": "https://img.bellotreno.org/file/so3ExTIX.webp",
+  "title": "Personal Album",
+  "tags": [
+    "example"
+  ],
+  "description": "https://www.lambrate.de",
+  "columns": 3
 }
