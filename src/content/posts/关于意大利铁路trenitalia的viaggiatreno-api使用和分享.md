@@ -196,7 +196,7 @@ Wed Mar 05 2026 14:30:00 GMT+0100
 | `4` | TRENITALIA_IC | Trenitalia 城际 |
 | `18` | TRENITALIA_TPER | Trenitalia TPER（艾米利亚-罗马涅） |
 | `63` | TRENORD | Trenord（伦巴第） |
-| `64` | OBB | ÖBB与Trenord合作列车（奥地利联邦铁路） |
+| `64` | ÖBB | ÖBB与Trenord合作列车（奥地利联邦铁路） |
 | `77` | FS_TTI | FS Treni Turistici Italiani （存疑，来源于2026年2月Nike x FS 的ACG Express列车运行所提取出的信息）|
 | `910` | FSE | Ferrovie del Sud Est（普利亚） |
 
@@ -482,7 +482,7 @@ GET /andamentoTreno/{idStazione}/{numeroTreno}/{timestamp}
     }
 }
 ```
-**`fermate` 例子 中途站NAPOLI CENTRALE ：**
+**`fermate` 中途站NAPOLI CENTRALE ：**
 ```json
 {
       "orientamento": null,
@@ -568,7 +568,7 @@ GET /andamentoTreno/{idStazione}/{numeroTreno}/{timestamp}
 ```
 
 
-**顶层响应完整字段表（基于 FR 9505 实测数据）：**
+**顶层响应完整字段表（基于FR 9505）：**
 
 | 字段 | 类型 | 说明 | 示例值 |
 |---|---|---|---|
@@ -677,22 +677,9 @@ GET /andamentoTreno/{idStazione}/{numeroTreno}/{timestamp}
 | `arrivoTeoricoZero` | long/null | 原始理论到达（总为 null） | `null` | `null` | `null` |
 | `materiale_label` | string/null | 车辆型号标签（总为 null） | `null` | `null` | `null` |
 
-> **关键规律：** 始发站（`tipoFermata: "P"`）仅有出发时间，`arrivoReale`/`arrivo_teorico` 为 null；终到站（`tipoFermata: "A"`）仅有到达时间，`partenzaReale`/`partenza_teorica` 为 null。`progressivo` 并非严格 0-100，实测 FR 9505 终到站为 119。
+> 始发站（`tipoFermata: "P"`）仅有出发时间，`arrivoReale`/`arrivo_teorico` 为 null；终到站（`tipoFermata: "A"`）仅有到达时间，`partenzaReale`/`partenza_teorica` 为 null。
 
-**延误等级与图标映射（基于实测 `compImgRitardo` / `compClassRitardoTxt`）：**
 
-| 延误范围 | `compImgRitardo` 图标 | `compClassRitardoTxt` | `compClassRitardoLine` | 含义 |
-|---|---|---|---|---|
-| 未出发 | `nonpartito.png` | `null` | `null` | 尚未出发 |
-| -∞ ~ 0 min | `regolare.png` | `""` | `regolare_line` | 准点或提前 |
-| 1 ~ 10 min | `regolare.png` | `""` | `regolare_line` | 轻微延误（仍显示为"正常"） |
-| 11 ~ 30 min | `ritardo01.png` | `"ritardo01_txt"` | `"ritardo01_line"` | 中等延误 |
-| 31+ min | `ritardo02.png` | `"ritardo02_txt"` | `"ritardo02_line"` | 严重延误 |
-| 检测失败 | `alert3.png` | — | — | 列车位置无法检测（`compRitardo[0]` = `"Mancato rilevamento"`） |
-
-> **"Mancato rilevamento"（检测失败）状态：** 列车在运行中但 GPS/信号系统暂时无法定位。此时 `ritardo` 字段值可能不准确。实测 FR 8814 从 Lecce 出发时出现此状态，`compRitardo` 的非IT语言部分可能为 `null`。
-
-**时间精度：** 所有时间戳向下取整至 30 秒，延误为整数分钟（向上取整）。
 
 ---
 
@@ -854,7 +841,6 @@ GET /cercaStazione/{text}
 | `label` | string/null | 城市标签（仅主要车站有值） | `"Trieste"` / `null` |
 | `id` | string | 车站代码 | `"S03317"` |
 
-> `label` 字段规律：只有每个城市的主要车站（中央站、机场站）有 `label` 值，小站为 `null`。可用于判断车站重要性。
 
 ---
 
@@ -1098,11 +1084,10 @@ Thu%20Mar%2012%202026%2013:31:00%20GMT%2B0100
 | `compInStazionePartenza` | string[9] | string[9] | 在站出发状态（9语言）：`["Partito","Departed",...]` |
 | `compInStazioneArrivo` | string[9] | string[9] | 在站到达状态（9语言）：`["Arrivato","Arrived",...]` |
 
-> **`compOrarioEffettivoArrivo` 格式异常：** 到达表中该字段将图标路径与时间拼接：`"/vt_static/img/.../regolare.png13:48"`。提取实际时间需正则：`/(\d{2}:\d{2})$/`。
 
-> **`categoria` 字段的陷阱：** FR 列车的 `categoria` 为空字符串 `""`，而 `categoriaDescrizione` 为 `" FR"`（注意前导空格）。EC Frecciarossa 的 `categoriaDescrizione` 为 `"EC FR"`。判断列车类别应优先使用 `compNumeroTreno`。
+> **`categoria` 字段的陷阱：** FR 列车的 `categoria` 为空字符串 `""`，而 `categoriaDescrizione` 为 `" FR"`。EC Frecciarossa 的 `categoriaDescrizione` 为 `"EC FR"`。判断列车类别应优先使用 `compNumeroTreno`。
 
-> **`tipoProdotto` 的含义：** `"100"` 表示高速/商务列车（Frecciarossa 等），`"0"` 表示普通列车（REG/IC 等）。可用于区分是否需要显示编组方向。
+
 
 ---
 
@@ -1255,7 +1240,7 @@ GET /getCoordinateStazione/{codStazione}
 
 ---
 
-#### 城市坐标
+#### 简洁坐标
 
 ```
 GET /coordinateCitta/{codStazione}
@@ -1413,7 +1398,7 @@ GET /news/{codRegione}/{lingua}
 
 按大区和语言获取新闻。`lingua` 为语言索引（0=意大利语，1=英语...）。
 
-> 实测此端点经常返回空数组 `[]`，仅在重大事件时有数据。
+> 经常返回空数组 `[]`，仅在重大事件时有数据。
 
 ---
 
@@ -1590,7 +1575,7 @@ GET /resteasy/news/smartcaring
 | 施工 | `lavori di manutenzione programmati` |
 | 系统故障 | `Causa guasto sistemi` |
 
-> **注意：** SmartCaring 返回的是该车次**全部历史通知**（非仅当天），数据量可能很大（FR 9505 返回了 68 KB）。筛选当天通知需用 `startValidity` 与当天零时做比较。
+> **注意：** SmartCaring 返回的是该车次**全部历史通知**（非仅当天），数据量可能很大,筛选当天通知需用 `startValidity` 与当天零时做比较。
 
 ---
 
@@ -1694,7 +1679,7 @@ GET /datimeteo/{codiceRegione}
 
 **Accept：** `application/json`
 
-以车站代码为 key，返回该大区主要车站（5~12 个）的今明两天天气。
+以车站代码为 key，返回该大区主要车站的今明两天天气。
 
 **示例请求：** `/datimeteo/1`（Lombardia）
 
@@ -1724,29 +1709,6 @@ GET /datimeteo/{codiceRegione}
 }
 ```
 
-**`datimeteo` 完整字段表：**
-
-| 字段 | 类型 | 说明 |
-|---|---|---|
-| `codStazione` | string | 车站代码 |
-| `oggiTemperatura` | int | 今日综合温度（°C） |
-| `oggiTemperaturaMattino` | int | 今日上午温度 |
-| `oggiTemperaturaPomeriggio` | int | 今日下午温度 |
-| `oggiTemperaturaSera` | int | 今日晚间温度 |
-| `oggiTempo` | int | 今日综合天气代码 |
-| `oggiTempoMattino` | int | 今日上午天气代码 |
-| `oggiTempoPomeriggio` | int | 今日下午天气代码 |
-| `oggiTempoSera` | int | 今日晚间天气代码（夜间代码 = 白天 + 100） |
-| `domaniTemperatura` | int | 明日综合温度 |
-| `domaniTemperaturaMattino` | int | 明日上午温度 |
-| `domaniTemperaturaPomeriggio` | int | 明日下午温度 |
-| `domaniTemperaturaSera` | int | 明日晚间温度 |
-| `domaniTempo` | int | 明日综合天气代码 |
-| `domaniTempoMattino` | int | 明日上午天气代码 |
-| `domaniTempoPomeriggio` | int | 明日下午天气代码 |
-| `domaniTempoSera` | int | 明日晚间天气代码 |
-
-``
 
 如您对此感兴趣，可以尝试使用[BelloTreno](https://real.bellotreno.org)来搜索火车信息。有任何问题可以通过ferrovie@bellotreno.org联系我。
 
