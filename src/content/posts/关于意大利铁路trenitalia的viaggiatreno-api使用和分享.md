@@ -31,7 +31,7 @@ Viaggiatreno API用于Trenitalia(包含FS各合资，全资子公司TN,TTX,FSE�
 
 [ViaggiaTreno](http://www.viaggiatreno.it) 是FS集团Trenitalia运营的列车实时信息系统。它的 Web 前端通过一套 HTTP API 获取列车运行、车站时刻表、铁路公告等数据。
 
-这套 API **没有官方公开文档**，但由于其前端 JavaScript 直接调用这些接口，已被广泛逆向使用。本文将积累的信息和做一些解析。
+这套 API **没有官方公开文档**，但由于其前端 JavaScript 直接调用这些接口，已被广泛逆向使用。本文将积累的信息做一些解析。
 
 ### Base URL
 
@@ -46,28 +46,6 @@ http://www.viaggiatreno.it/infomobilita/resteasy/viaggiatreno/
 ```
 http://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno/
 ```
-
----
-## 什么是 ViaggiaTreno
-
-[ViaggiaTreno](http://www.viaggiatreno.it) 是FS集团Trenitalia运营的列车实时信息系统。它的 Web 前端通过一套 HTTP API 获取列车运行、车站时刻表、铁路公告等数据。
-
-这套 API **没有官方公开文档**，但由于其前端 JavaScript 直接调用这些接口，已被广泛逆向使用。本文将积累的信息和做一些解析。
-
-### Base URL
-
-```
-http://www.viaggiatreno.it/infomobilita/resteasy/viaggiatreno/
-```
-
-所有端点均挂载在此路径下，使用 `HTTP GET` 方法调用。
-
-另有一个移动端入口，路径结构完全相同：
-
-```
-http://www.viaggiatreno.it/infomobilitamobile/resteasy/viaggiatreno/
-```
-
 ---
 
 ## API介绍
