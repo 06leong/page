@@ -656,7 +656,7 @@ GET /andamentoTreno/{idStazione}/{numeroTreno}/{timestamp}
 | `ritardo` | int | 综合延误（分钟） | `1` | `3` | `-1` |
 | `ritardoPartenza` | int | 出发延误（分钟） | `1` | `3` | `0` |
 | `ritardoArrivo` | int | 到达延误（分钟，负=提前） | `0` | `3` | `-1` |
-| `progressivo` | int | 公里进度（1=始发，100=终到。可超过 100） | `1` | `110` | `119` |
+| `progressivo` | int | 进度(可能为经过检测点数)  | `1` | `110` | `119` |
 | `orientamento` | string/null | 该站的编组方向 | `"A"` | `"B"` | `"B"` |
 | `binarioProgrammatoPartenzaDescrizione` | string/null | 计划出发站台号 | `"8"` | `"21"` | `null` |
 | `binarioEffettivoPartenzaDescrizione` | string/null | 实际出发站台号 | `"8"` | `"17"` | `null` |
