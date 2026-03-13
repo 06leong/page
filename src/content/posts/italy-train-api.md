@@ -2,7 +2,9 @@
 title: 意大利铁路Viaggiatreno API的使用分享
 published: 2025-02-02T17:23:00.000+02:00
 updated: 2026-03-12T14:36:00.000+02:00
-description: About viaggiatreno api
+description: >
+  About viaggiatreno api.
+  如您对此感兴趣，可以尝试使用[BelloTreno](https://real.bellotreno.org)来搜索火车信息。有任何问题可以通过ferrovie@bellotreno.org联系我。
 cover: https://img.bellotreno.org/file/KSM4U02o.webp
 tags:
   - railway
@@ -1709,6 +1711,172 @@ GET /datimeteo/{codiceRegione}
 }
 ```
 
+## API 调用流程图
 
-如您对此感兴趣，可以尝试使用[BelloTreno](https://real.bellotreno.org)来搜索火车信息。有任何问题可以通过ferrovie@bellotreno.org联系我。
+### 整体架构
+
+```mermaid
+graph TB
+    subgraph Backend["☕ Java 后端（IBM WebSphere + RESTEasy）"]
+        direction TB
+        
+        subgraph NS["NewsService<br/>/resteasy/news/"]
+            N1["smartcaring"]
+            N2["infomobility"]
+        end
+        
+        subgraph VTS["ViaggiaTrenoService<br/>/resteasy/viaggiatreno/"]
+            direction TB
+            
+            subgraph Search["搜索"]
+                S1["cercaNumeroTrenoTrenoAutocomplete"]
+                S2["cercaNumeroTreno"]
+                S3["autocompletaStazione"]
+                S4["autocompletaStazioneNTS"]
+                S5["autocompletaStazioneImpostaViaggio"]
+                S6["cercaStazione"]
+            end
+            
+            subgraph Realtime["实时数据"]
+                R1["andamentoTreno"]
+                R2["tratteCanvas"]
+                R3["partenze"]
+                R4["arrivi"]
+            end
+            
+            subgraph Geo["车站与地理"]
+                G1["regione"]
+                G2["dettaglioStazione"]
+                G3["getCoordinateStazione"]
+                G4["coordinateCitta"]
+                G5["elencoStazioni"]
+                G6["elencoStazioniCitta"]
+            end
+            
+            subgraph Map["地图线路"]
+                M1["elencoTratte"]
+                M2["dettagliTratta"]
+                M3["dettaglioViaggio"]
+            end
+            
+            subgraph Info["公告"]
+                I1["news"]
+                I2["infomobilitaTicker"]
+                I3["infomobilitaRSS"]
+                I4["infomobilitaRSSBox"]
+            end
+            
+            subgraph Sys["系统"]
+                Y1["language"]
+                Y2["property"]
+                Y3["statistiche"]
+                Y4["datimeteo"]
+            end
+        end
+    end
+    
+    JSAPI["rest-jsapi<br/>自动生成 JS 客户端存根"]
+    Backend -->|"暴露"| JSAPI
+```
+
+### 车次查询完整流程
+
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant F as 前端
+    participant API as ViaggiaTreno API
+
+    U->>F: 输入车次号 "9505"
+    F->>F: 正则提取纯数字
+
+    F->>API: GET /cercaNumeroTrenoTrenoAutocomplete/9505
+    API-->>F: 纯文本: "9505 - MILANO CENTRALE|9505-S01700-..."
+
+    alt 返回多行（车次不唯一）
+        F->>U: 显示消歧义面板
+        U->>F: 选择具体班次
+    end
+
+    F->>API: GET /andamentoTreno/S01700/9505/1773270000000
+    API-->>F: JSON 完整列车数据
+
+    alt HTTP 204
+        F->>U: "暂无实时数据"
+    else JSON 正常
+        F->>F: 解析 categoria → 列车类别
+        F->>F: 解析 codiceCliente → 运营商
+        F->>F: 解析 fermate[] → 时间轴
+        F->>F: 翻译状态文本
+        F->>U: 渲染详情
+    end
+
+    opt 补充延误原因
+        F->>API: GET /news/smartcaring?commercialTrainNumber=9505
+        API-->>F: SmartCaring 通知数组
+        F->>F: 按 startValidity 筛选当天
+        F->>U: 显示延误原因
+    end
+```
+
+### 车站时刻表流程
+
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant F as 前端
+    participant API as ViaggiaTreno API
+
+    U->>F: 输入 "Milano"
+    F->>API: GET /cercaStazione/Milano
+    API-->>F: JSON 车站列表
+
+    alt 多个匹配
+        F->>U: 显示选择列表
+        U->>F: 选择 MILANO CENTRALE (S01700)
+    end
+
+    F->>F: 构造意大利本地时间字符串
+    Note over F: "Wed Mar 12 2026 14:30:00 GMT+0100"
+
+    F->>API: GET /partenze/S01700/{encodedDateTime}
+    API-->>F: JSON 列车数组
+    F->>U: 渲染时刻表
+```
+
+## 完整端点速查表
+
+| # | 端点 | 方法 | 响应格式 | 
+|---|---|---|---|
+| 1 | `/cercaNumeroTrenoTrenoAutocomplete/{n}` | GET | text/plain | 
+| 2 | `/cercaNumeroTreno/{n}` | GET | JSON |
+| 3 | `/andamentoTreno/{id}/{n}/{ts}` | GET | JSON | 
+| 4 | `/tratteCanvas/{id}/{n}/{ts}` | GET | JSON | 
+| 5 | `/autocompletaStazione/{text}` | GET | text/plain | 
+| 6 | `/autocompletaStazioneNTS/{text}` | GET | text/plain | 
+| 7 | `/autocompletaStazioneImpostaViaggio/{text}` | GET | text/plain | 
+| 8 | `/cercaStazione/{text}` | GET | JSON | 
+| 9 | `/partenze/{id}/{dt}` | GET | JSON | 
+| 10 | `/arrivi/{id}/{dt}` | GET | JSON | 
+| 11 | `/regione/{id}` | GET | int | 
+| 12 | `/dettaglioStazione/{id}/{reg}` | GET | JSON | 
+| 13 | `/getCoordinateStazione/{id}` | GET | JSON | 
+| 14 | `/coordinateCitta/{id}` | GET | JSON | 
+| 15 | `/elencoStazioni/{reg}` | GET | JSON |
+| 16 | `/elencoStazioniCitta/{stazione}` | GET | JSON | 
+| 17 | `/elencoTratte/{reg}/{zoom}/{cat}/{av}/{ts}` | GET | JSON |
+| 18 | `/dettagliTratta/{reg}/{ab}/{ba}/{cat}/{av}` | GET | JSON | 
+| 19 | `/dettaglioViaggio/{from}/{to}` | GET | JSON | 
+| 20 | `/news/{codRegione}/{lingua}` | GET | JSON | 
+| 21 | `/infomobilitaTicker` | GET | text/plain |
+| 22 | `/infomobilitaRSS/{isInfoLavori}` | GET | text/plain |
+| 23 | `/infomobilitaRSSBox/{isInfoLavori}` | GET | text/plain |
+| 24 | `/language/{idLingua}` | GET | JSON | 
+| 25 | `/property/{name}` | GET | text/plain | 
+| 26 | `/statistiche/{timestamp}` | GET | JSON | 
+| 27 | `/datimeteo/{codiceRegione}` | GET | JSON | 
+| 28 | `[News] /smartcaring` | GET | JSON | 官方JS |
+| 29 | `[News] /infomobility` | GET | JSON | 官方JS |
+
+
 
