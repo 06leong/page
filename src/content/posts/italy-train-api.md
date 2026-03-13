@@ -1,7 +1,7 @@
 ---
 title: 意大利铁路Viaggiatreno API的使用分享
-published: 2025-02-02T17:23:00.000+08:00
-updated: 2026-03-12T14:36:00.000+08:00
+published: 2025-02-02T17:23:00.000+02:00
+updated: 2026-03-12T14:36:00.000+02:00
 description: About viaggiatreno api
 cover: https://img.bellotreno.org/file/KSM4U02o.webp
 tags:
