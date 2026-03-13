@@ -7,14 +7,14 @@
   "techStack": [
     "Astro",
     "Tailwind CSS",
-    ""
+    "JS"
   ],
   "status": "in-progress",
   "title": "BelloTreno",
   "tags": [
     "Railway"
   ],
-  "image": "https://img.bellotreno.org/file/3Hkd8MkB.webp",
+  "image": "https://img.bellotreno.org/file/wdgEwhcO.webp",
   "description": "A personal project for Italian railway real timetable, using data from viaggiatreno API. ",
   "category": "website"
 }
