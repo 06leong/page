@@ -1,10 +1,9 @@
 ---
 title: 意大利铁路Viaggiatreno API的使用分享
-published: 2025-02-02T17:23:00.000+02:00
+published: 2025-02-02T10:30:00.000+08:00
 updated: 2026-03-12T14:36:00.000+02:00
-description: >
-  About viaggiatreno api.
-  如您对此感兴趣，可以尝试使用[BelloTreno](https://real.bellotreno.org)来搜索火车信息。有任何问题可以通过ferrovie@bellotreno.org联系我。
+description: |
+  About viaggiatreno api. 如您对此感兴趣，可以使用https://real.bellotreno.org来搜索火车信息。
 cover: https://img.bellotreno.org/file/KSM4U02o.webp
 tags:
   - railway
@@ -13,6 +12,8 @@ tags:
 category: 铁路
 draft: false
 ---
+欢迎尝试使用[BelloTreno](https://real.bellotreno.org)来搜索意铁火车信息。
+
 :::tip
 Viaggiatreno API用于Trenitalia(包含FS各合资，全资子公司TN,TTX,FSE等)实时车次和车站出发到达信息查询。
 这与Trenitalia行程规划lefrecce.it API，RFI 的Monitor Arrivi Partenze live API不同。
@@ -1879,4 +1880,4 @@ sequenceDiagram
 | 29 | `[News] /infomobility` | GET | JSON | 官方JS |
 
 
-
+有任何问题可以通过ferrovie@bellotreno.org联系我。
