@@ -2,14 +2,18 @@
   "photos": [
     {
       "tags": [],
-      "src": "https://img.bellotreno.org/file/KRhNAcmC.webp"
+      "src": "https://img.bellotreno.org/file/8WXtjxpk.webp"
+    },
+    {
+      "tags": [],
+      "src": "https://img.bellotreno.org/file/USPgmoRN.webp"
     }
   ],
   "layout": "masonry",
   "date": "2022-01-01T01:00:00.000+08:00",
   "visible": true,
   "location": "🇪🇺",
-  "cover": "https://img.bellotreno.org/file/so3ExTIX.webp",
+  "cover": "https://img.bellotreno.org/file/94FtoYcB.webp",
   "title": "Personal Album",
   "tags": [],
   "description": "Visit the website\n",
