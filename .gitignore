@@ -1,15 +1,9 @@
-# editor config
-**/.vscode/
+# build output
+dist/
+.output/
 
 # dependencies
 node_modules/
-
-# generated types
-.astro/
-.vercel/
-
-# build output
-dist/
 
 # logs
 npm-debug.log*
@@ -17,5 +11,15 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# private config
+
+# environment variables
 .env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# misc
+*.pem
+.cache
+.astro

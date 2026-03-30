@@ -1,24 +1,23 @@
-import { langToLocaleMap } from "@i18n/language";
-import { getDefaultLanguage } from "./language";
+import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "@/site.config";
 
+export function getFormattedDate(
+	date: Date | undefined,
+	options?: Intl.DateTimeFormatOptions,
+): string {
+	if (date === undefined) {
+		return "Invalid Date";
+	}
 
-export function formatDateToYYYYMMDD(date: Date): string {
-    return date.toISOString().substring(0, 10);
+	return new Intl.DateTimeFormat(siteConfig.date.locale, {
+		...(siteConfig.date.options as Intl.DateTimeFormatOptions),
+		...options,
+	}).format(date);
 }
 
-// 国际化日期格式化函数
-export function formatDateI18n(dateString: string): string {
-    const date = new Date(dateString);
-    const lang = getDefaultLanguage();
-
-    // 根据语言设置不同的日期格式
-    const options: Intl.DateTimeFormatOptions = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
-
-    // 使用统一的语言配置获取 locale
-    const locale = langToLocaleMap[lang] || "en-US";
-    return date.toLocaleDateString(locale, options);
+export function collectionDateSort(
+	a: CollectionEntry<"post" | "note">,
+	b: CollectionEntry<"post" | "note">,
+) {
+	return b.data.publishDate.getTime() - a.data.publishDate.getTime();
 }
