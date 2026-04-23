@@ -15,8 +15,11 @@ export const siteConfig: SiteConfig = {
 	author: "L",
 	// Used as the default description meta property and webmanifest description
 	description:
-		"A developer writing about European railways, public transport, trains, photography, and travel, with notes on Italian railways, ferrovie, treni, fotografia, and viaggi.",
+		"A developer writing about European railways, public transport, trains, photography, travel, and BelloTreno, with notes on Italian railways, ferrovie, treni, fotografia, and viaggi.",
 	keywords: [
+		"BelloTreno",
+		"bellotreno",
+		"L's Trainlog",
 		"European railways",
 		"Europe railways",
 		"Italian railways",
