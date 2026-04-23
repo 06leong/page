@@ -14,7 +14,7 @@ Viaggiatreno API用于Trenitalia(包含FS各合资，全资子公司TN,TTX,FSE�
 :::
 
 
-在意大利坐火车时，最常用的就是**Trennitalia app** 或网页版的[Trenitalia - ViaggiaTreno ](http://www.viaggiatreno.it/infomobilita/index.jsp)（该网站依然采用HTTP的不安全连接，意铁也是随便凑合在用了）或者[RFI Monitor live(信息最全包含所有在FS车站运行列车的信息，但是未找到可用API) ](https://www.rfi.it/it/stazioni/pagine-stazioni/servizi-di-qualita/informazioni-al-pubblico/monitor-arrivi-partenze-live.html)来查询车次正晚点信息和车站大屏。
+在意大利坐火车时，最常用的就是**Trenitalia app** 或网页版的[Trenitalia - ViaggiaTreno ](http://www.viaggiatreno.it/infomobilita/index.jsp)（该网站依然采用HTTP的不安全连接，意铁也是随便凑合在用了）或者[RFI Monitor live(信息最全包含所有在FS车站运行列车的信息，但是未找到可用API) ](https://www.rfi.it/it/stazioni/pagine-stazioni/servizi-di-qualita/informazioni-al-pubblico/monitor-arrivi-partenze-live.html)来查询车次正晚点信息和车站大屏。
 ![image.webp](https://img.bellotreno.org/file/qGK6QBuQ.webp?from=admin)
 ![image1.webp](https://img.bellotreno.org/file/eGJGeRTb.webp?from=admin)
 
