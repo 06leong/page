@@ -6,11 +6,12 @@ import "@/styles/global.css";
 
 type Props = SiteMeta;
 
-const { articleDate, description, ogImage, title } = Astro.props;
+const { articleDate, description, keywords, ogImage, title } = Astro.props;
 
-const titleSeparator = "•";
+const titleSeparator = "|";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const metaKeywords = (keywords ?? siteConfig.keywords).join(", ");
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
 ---
 
@@ -19,7 +20,7 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <title>{siteTitle}</title>
 
 {/* Icons */}
-<link href="/icon.svg" rel="icon" type="image/svg+xml" />
+<link href="/icon.png" rel="icon" type="image/png" />
 {
 	import.meta.env.PROD && (
 		<>
@@ -38,6 +39,7 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 {/* Primary Meta Tags */}
 <meta content={siteTitle} name="title" />
 <meta content={description} name="description" />
+<meta content={metaKeywords} name="keywords" />
 <meta content={siteConfig.author} name="author" />
 
 {/* Open Graph / Facebook */}

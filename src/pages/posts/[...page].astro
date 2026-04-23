@@ -42,13 +42,13 @@ const meta = {
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Page",
+			text: "<- Previous Page",
 			url: page.url.prev,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Page →",
+			text: "Next Page ->",
 			url: page.url.next,
 		},
 	}),
@@ -136,7 +136,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 					</ul>
 					<span class="mt-4 block sm:text-end">
 						<a class="hover:text-link" href="/tags/">
-							View all <span aria-hidden="true">→</span>
+							View all <span aria-hidden="true">-></span>
 							<span class="sr-only">blog tags</span>
 						</a>
 					</span>

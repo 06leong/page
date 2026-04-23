@@ -5,6 +5,7 @@ export interface SiteConfig {
 		options: Intl.DateTimeFormatOptions;
 	};
 	description: string;
+	keywords: string[];
 	lang: string;
 	ogLocale: string;
 	title: string;
@@ -20,6 +21,7 @@ export interface PaginationLink {
 export interface SiteMeta {
 	articleDate?: string | undefined;
 	description?: string;
+	keywords?: string[];
 	ogImage?: string | undefined;
 	title: string;
 }

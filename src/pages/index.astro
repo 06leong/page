@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import Note from "@/components/note/Note.astro";
-import SocialList from "@/components/SocialList.astro";
 import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
@@ -31,13 +30,19 @@ const latestNotes = allNotes
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-12">Hello World!</h1>
+		<h1 class="title mb-12">L's Trainlog</h1>
 		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
+			I'm L, a developer who enjoys building things around railways and public transport.
 		</p>
-		<SocialList />
+		<p class="mb-4">
+			This blog is where I keep notes on europe railways, trains, public transport, photography, and
+			travel. You can also visit <a
+				class="cactus-link inline-block"
+				href="https://real.bellotreno.org"
+				rel="noreferrer"
+				target="_blank">BelloTreno</a
+			> for my railway project.
+		</p>
 	</section>
 	{
 		pinnedPosts.length > 0 && (

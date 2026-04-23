@@ -10,13 +10,31 @@ export const siteConfig: SiteConfig = {
 		- The link value found in src/components/layout/Header.astro L:35
 		- In the footer found in src/components/layout/Footer.astro L:12
 	*/
-	title: "L's Blog",
+	title: "L's Trainlog",
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
-	author: "me",
+	author: "L",
 	// Used as the default description meta property and webmanifest description
-	description: "memory",
+	description:
+		"A developer writing about European railways, public transport, trains, photography, and travel, with notes on Italian railways, ferrovie, treni, fotografia, and viaggi.",
+	keywords: [
+		"European railways",
+		"Europe railways",
+		"Italian railways",
+		"Italy trains",
+		"railways",
+		"public transport",
+		"trains",
+		"photography",
+		"travel",
+		"ferrovie",
+		"ferrovie italiane",
+		"treni",
+		"fotografia",
+		"viaggi",
+		"trasporto pubblico",
+	],
 	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
-	lang: "en-GB",
+	lang: "en",
 	// Meta property, found in src/components/BaseHead.astro L:42
 	ogLocale: "en_GB",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
