@@ -10,7 +10,7 @@ This site collects posts and notes about:
 - software and small web projects
 - photography, travel, and observations along the way
 
-You can also visit [BelloTreno](https://real.bellotreno.org), my railway project.
+You can also visit [BelloTreno](https://bellotreno.org), my railway project.
 
 ## Development
 

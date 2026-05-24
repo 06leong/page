@@ -6,7 +6,7 @@ tags: ["railway", "api", "social"]
 updatedDate: 2 March 2026
 pinned: true
 ---
-欢迎尝试使用[BelloTreno](https://real.bellotreno.org)来搜索意铁火车信息。
+欢迎尝试使用[BelloTreno](https://bellotreno.org)来搜索意铁火车信息。
 
 :::tip
 Viaggiatreno API用于Trenitalia(包含FS各合资，全资子公司TN,TTX,FSE等)实时车次和车站出发到达信息查询。
